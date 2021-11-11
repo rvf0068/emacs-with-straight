@@ -101,3 +101,127 @@ The Ido package lets you switch between buffers and visit files and directories 
 #+end_src
 
 
+
+* org mode
+
+Org mode comes with Emacs.
+
+https://orgmode.org/
+
+#+begin_quote
+A GNU Emacs major mode for convenient plain text markup — and much more.
+
+Org mode is for keeping notes, maintaining to-do lists, planning projects, authoring documents, computational notebooks, literate programming and more — in a fast and effective plain text system.
+#+end_quote
+
+#+begin_src emacs-lisp
+(use-package org
+  :bind (("C-c a" . org-agenda)
+	 ("C-c c" . org-capture)
+	 ("C-c l" . org-store-link)
+	 :map org-mode-map
+	 ;; these two next functions are defined in the :init section
+	 ("$" . yf/org-electric-dollar)
+	 ("|" . org-absolute-value)
+	 ([?\s-j] . org-babel-next-src-block)
+	 ([?\s-k] . org-babel-previous-src-block)
+	 ([?\s-l] . org-edit-src-code)
+	 :map org-src-mode-map
+	 ([?\s-l] . org-edit-src-exit))
+  :init
+  ;; from Nicolas Richard <theonewiththeevillook@yahoo.fr>
+  ;; Date: Fri, 8 Mar 2013 16:23:02 +0100
+  ;; Message-ID: <87vc913oh5.fsf@yahoo.fr>
+  (defun yf/org-electric-dollar nil
+    "When called once, insert \\(\\) and leave point in between.
+When called twice, replace the previously inserted \\(\\) by one $."
+    (interactive)
+    (if (and (looking-at "\\\\)") (looking-back "\\\\("))
+	(progn (delete-char 2)
+	       (delete-char -2)
+	       (insert "$"))
+      (insert "\\(\\)")
+      (backward-char 2)))
+  ;; see https://lists.gnu.org/archive/html/emacs-orgmode/2015-09/msg00118.html
+  (defmacro by-backend (&rest body)
+    `(case org-export-current-backend ,@body))
+  ;; see http://endlessparentheses.com/ispell-and-org-mode.html
+  (defun endless/org-ispell ()
+    "Configure `ispell-skip-region-alist' for `org-mode'."
+    (make-local-variable 'ispell-skip-region-alist)
+    (add-to-list 'ispell-skip-region-alist '(org-property-drawer-re))
+    (add-to-list 'ispell-skip-region-alist '("~" "~"))
+    (add-to-list 'ispell-skip-region-alist '("=" "="))
+    (add-to-list 'ispell-skip-region-alist '("^#\\+begin_src" . "^#\\+end_src")))
+  (defun org-absolute-value ()
+    "Insert || and leave point inside when pressing |"
+    (interactive)
+    (if (org-inside-LaTeX-fragment-p)
+	(progn
+	  (insert "||")
+	  (backward-char 1))
+      (insert "|")))
+  (defun my-org-mode-hook ()
+    ;; https://emacs.stackexchange.com/a/63581/29
+    ;; do not expand abbrevs in org-mode block sources
+    (setq abbrev-expand-function (lambda ()
+				   (unless (org-in-src-block-p)
+				     (abbrev--default-expand))))
+    (turn-on-auto-revert-mode))
+  :custom
+  (org-beamer-environments-extra
+	'(("conjecture"   "j" "\\begin{conjecture}%a%U"   "\\end{conjecture}")
+	  ("corollary"   "r" "\\begin{corollary}%a%U"   "\\end{corollary}")
+	  ("lemma"       "l" "\\begin{lemma}%a%U"       "\\end{lemma}")
+	  ("proposition" "P" "\\begin{proposition}%a%U" "\\end{proposition}")))
+  (org-export-with-tags nil)
+  (org-file-apps
+   '((auto-mode . emacs)
+     ("pdf" . "evince %s")))
+  (org-hide-emphasis-markers t)
+  (org-highlight-latex-and-related '(native))
+  (org-latex-listings t)
+  (org-log-done 'note)
+  (org-return-follows-link t)
+  (org-src-preserve-indentation t)
+  (org-support-shift-select 'always)
+  ;; filter
+  (defun replace-math-md (contents backend info)
+    (when (eq backend 'md)
+      (s-with contents
+	(replace-regexp-in-string "\\\\(" "\\\\\\\\(")
+	(replace-regexp-in-string "\\\\)" "\\\\\\\\)"))))
+  (add-to-list 'org-export-filter-final-output-functions
+	       'replace-math-md)
+  :config
+  (require 'ox-beamer)
+  (font-lock-add-keywords
+   'org-mode
+   '(("^ *\\([-]\\) "
+      (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+  (if (not termux-p)
+  (let* ((variable-tuple
+          (cond ((x-list-fonts "Fira Sans") '(:font "Fira Sans"))
+                ((x-family-fonts "Sans Serif") '(:family "Sans Serif"))
+                (nil (warn "Cannot find a Sans Serif Font."))))
+         (base-font-color (face-foreground 'default nil 'default))
+         (headline `(:inherit default :weight bold :foreground ,base-font-color)))
+
+    (custom-theme-set-faces
+     'user
+     `(org-level-8 ((t (,@headline ,@variable-tuple))))
+     `(org-level-7 ((t (,@headline ,@variable-tuple))))
+     `(org-level-6 ((t (,@headline ,@variable-tuple))))
+     `(org-level-5 ((t (,@headline ,@variable-tuple))))
+     `(org-level-4 ((t (,@headline ,@variable-tuple :height 1.1))))
+     `(org-level-3 ((t (,@headline ,@variable-tuple :height 1.2))))
+     `(org-level-2 ((t (,@headline ,@variable-tuple :height 1.3))))
+     `(org-level-1 ((t (,@headline ,@variable-tuple :height 1.5))))
+     `(org-document-title ((t (,@headline ,@variable-tuple
+					  :height 1.75 :underline nil)))))))
+  :hook
+  (org-mode . my-org-mode-hook)
+  (org-mode . endless/org-ispell)
+  (org-babel-after-execute . org-redisplay-inline-images))
+#+end_src
+
