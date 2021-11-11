@@ -26,6 +26,46 @@ https://www.gnu.org/software/emacs/manual/html_node/emacs/Abbrevs.html
   (text-mode . abbrev-mode))
 #+end_src
 
+* auctex                                                               :math:
+
+https://www.gnu.org/software/auctex/
+
+#+BEGIN_QUOTE
+AUCTeX is an extensible package for writing and formatting TeX files in GNU Emacs and XEmacs. It supports many different TeX macro packages, including AMS-TeX, LaTeX, Texinfo, ConTeXt, and docTeX (dtx files).
+#+END_QUOTE
+
+#+begin_src emacs-lisp
+(use-package tex
+  :straight auctex
+  :mode ("\\.tikz\\'" . latex-mode)
+  :init
+  (defun my-latex-config ()
+    (LaTeX-math-mode)
+    (TeX-add-symbols '("emph" 1))
+    (LaTeX-add-environments '("definition")
+			    '("theorem")
+			    '("lemma")
+			    '("corollary")
+			    '("definicion")
+			    '("teorema")
+			    '("lema")
+			    '("corolario"))
+    (TeX-run-style-hooks "tikz")
+    (TeX-run-style-hooks "tkz-graph")
+    (TeX-run-style-hooks "tkz-berge"))
+  :custom
+  (TeX-auto-save t)
+  (TeX-electric-escape t)
+  (TeX-insert-braces nil)
+  (TeX-parse-self t)
+  (TeX-save-query nil)
+  (reftex-plug-into-AUCTeX t)
+  (reftex-use-external-file-finders t)
+  :hook
+  (LaTeX-mode . my-latex-config)
+  (LaTeX-mode . turn-on-reftex))
+#+end_src
+
 * ido
 
 Ido comes with Emacs.
