@@ -13,3 +13,31 @@
 #+begin_src emacs-lisp
 (straight-use-package 'use-package)
 #+end_src
+
+* abbrev
+
+https://www.gnu.org/software/emacs/manual/html_node/emacs/Abbrevs.html
+
+#+begin_src emacs-lisp
+(use-package abbrev
+  :config
+  (abbrev-mode 1)
+  :hook
+  (text-mode . abbrev-mode))
+#+end_src
+
+* ido
+
+Ido comes with Emacs.
+
+#+begin_quote
+The Ido package lets you switch between buffers and visit files and directories with a minimum of keystrokes. It is a superset of Iswitchb, the interactive buffer switching package by Stephen Eglen.
+#+end_quote
+
+#+begin_src emacs-lisp
+(use-package ido
+  :config
+  (ido-mode 1))
+#+end_src
+
+
