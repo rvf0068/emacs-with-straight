@@ -1,0 +1,15 @@
+#+title: Emacs configuration using straight.el
+#+options: toc:nil date:nil author:nil
+
+#+latex_header: \usepackage{listings}
+#+latex_header: \lstdefinestyle{source}{basicstyle=\footnotesize\ttfamily,frame=tb}
+#+latex_header: \lstset{style=source}
+#+latex_header: \usepackage[margin=2.5cm]{geometry}
+
+#+startup: overview
+
+* use-package
+
+#+begin_src emacs-lisp
+(straight-use-package 'use-package)
+#+end_src

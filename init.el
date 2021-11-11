@@ -10,3 +10,6 @@
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
+
+
+(org-babel-load-file  (expand-file-name "config.org" user-emacs-directory))
