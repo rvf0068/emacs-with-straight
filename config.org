@@ -14,6 +14,26 @@
 (straight-use-package 'use-package)
 #+end_src
 
+* emacs variables
+
+For some reason, setting the variable =termux-p= in =:custom= did not work.
+
+#+begin_src emacs-lisp
+(use-package emacs
+  :custom
+  (confirm-nonexistent-file-or-buffer nil)
+  (custom-file (concat user-emacs-directory "custom.el"))
+  (frame-title-format "%b: %+%+ %f")
+  (mouse-drag-copy-region t)
+  :config
+  (setq termux-p
+   (or (string-suffix-p "linux-android" system-configuration)
+       (string-prefix-p "arm-unknown-linux" system-configuration)))
+  (setq windows-p
+   (string-suffix-p "mingw32" system-configuration))
+  (load custom-file 'noerror))
+#+end_src
+
 * abbrev
 
 https://www.gnu.org/software/emacs/manual/html_node/emacs/Abbrevs.html
