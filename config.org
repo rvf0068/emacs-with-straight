@@ -145,7 +145,6 @@ The Ido package lets you switch between buffers and visit files and directories 
 #+end_src
 
 
-
 * org mode
 
 Org mode comes with Emacs.
@@ -211,7 +210,6 @@ When called twice, replace the previously inserted \\(\\) by one $."
     (setq abbrev-expand-function (lambda ()
 				   (unless (org-in-src-block-p)
 				     (abbrev--default-expand))))
-    (org-fragtog-mode)
     (turn-on-auto-revert-mode)
     (turn-on-org-cdlatex))
   :custom
@@ -275,5 +273,7 @@ When called twice, replace the previously inserted \\(\\) by one $."
 
 #+begin_src emacs-lisp
 (use-package org-fragtog
-  :straight t)
+  :straight t
+  :init
+  (add-hook 'org-mode-hook 'org-fragtog-mode))
 #+end_src
