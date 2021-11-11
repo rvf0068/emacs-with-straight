@@ -211,7 +211,9 @@ When called twice, replace the previously inserted \\(\\) by one $."
     (setq abbrev-expand-function (lambda ()
 				   (unless (org-in-src-block-p)
 				     (abbrev--default-expand))))
-    (turn-on-auto-revert-mode))
+    (org-fragtog-mode)
+    (turn-on-auto-revert-mode)
+    (turn-on-org-cdlatex))
   :custom
   (org-beamer-environments-extra
 	'(("conjecture"   "j" "\\begin{conjecture}%a%U"   "\\end{conjecture}")
@@ -269,3 +271,9 @@ When called twice, replace the previously inserted \\(\\) by one $."
   (org-babel-after-execute . org-redisplay-inline-images))
 #+end_src
 
+** org-fragtog
+
+#+begin_src emacs-lisp
+(use-package org-fragtog
+  :straight t)
+#+end_src
