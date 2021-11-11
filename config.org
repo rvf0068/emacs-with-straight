@@ -86,6 +86,50 @@ AUCTeX is an extensible package for writing and formatting TeX files in GNU Emac
   (LaTeX-mode . turn-on-reftex))
 #+end_src
 
+* cdlatex                                                              :math:
+
+https://staff.fnwi.uva.nl/c.dominik/Tools/cdlatex/
+
+#+BEGIN_QUOTE
+CDLaTeX is a minor mode for Emacs supporting fast insertion of environment templates and math stuff in LaTeX. Similar commands are also offered as part of the AUCTeX package, but it is not the same - CDLaTeX focuses on speediness for inserting LaTeX constructs. I myself am using CDLaTeX on top of AUCTeX.
+#+END_QUOTE
+
+The settings in =cdlatex-math-symbol-alist= are useful also when writing math in org-mode.
+
+#+begin_src emacs-lisp
+(use-package cdlatex
+  :straight t
+  :custom
+  (cdlatex-math-symbol-alist
+   '(( ?c   ("\\colon"))
+     ( ?m   ("\\mu" "\\mapsto"))
+     ( ?p   ("\\pi" "\\varpi" "\\perp"))
+     ( ?o   ("\\omega" "\\oplus"))
+     ( ?O   ("\\Omega" "\\mathrm{Orb}"))
+     ( ?S   ("\\Sigma" "\\mathrm{Stab}"))
+     ( ?T   ("\\bigtriangleup"))
+     ( ?-   ("\\cap" "\\leftrightarrow" "\\longleftrightarrow"))
+     ( ?.   ("\\ldots" "\\cdots" "\\cdot"))
+     ( ?*   ("\\times" "\\otimes"))
+     ( ?<   ("\\leq" "\\langle" "\\trianglelefteq"))
+     ( ?>   ("\\geq" "\\rangle" "\\trianglerighteq"))
+     ( ?\[  ("\\subseteq"))))
+  (cdlatex-math-modify-alist
+   '(( ?a "\\overrightarrow" nil t nil nil)
+     ( ?k "\\mathfrak" nil t nil nil)
+     ( ?B "\\mathbb"         nil t nil nil)))
+  (cdlatex-command-alist
+   '(("bin"  "Insert \\binom{}{}"
+      "\\binom{?}{}"       cdlatex-position-cursor nil nil t)
+     ("norm" "Insert \\Vert \\Vert"
+      "\\Vert ?\\Vert"     cdlatex-position-cursor nil nil t)
+     ("gen"  "Insert \\langle \\rangle"
+      "\\langle ?\\rangle" cdlatex-position-cursor nil nil t)
+     ("set"  "Insert a set"
+      "\\{?\\mid \\}"      cdlatex-position-cursor nil nil t)))
+  (cdlatex-simplify-sub-super-scripts nil))
+#+end_src
+
 * ido
 
 Ido comes with Emacs.
