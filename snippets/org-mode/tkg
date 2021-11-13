@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: tikz graph
+# key: tkg
+# --
+#+name: $1
+#+header: :file (by-backend (latex "$1.tikz") (beamer "$1.tikz") (t "$1.png"))
+#+begin_src latex
+$0
+#+end_src
+   
+#+attr_html: :width 400 :alt $1 :align center
+#+attr_latex: :float t :width ""
+#+caption: $2 label:$1
+#+results: $1

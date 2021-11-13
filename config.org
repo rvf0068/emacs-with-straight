@@ -297,3 +297,22 @@ When called twice, replace the previously inserted \\(\\) by one $."
 (use-package org-ref
   :straight t)
 #+end_src
+
+* yasnippet
+
+https://github.com/joaotavora/yasnippet
+
+#+begin_quote
+YASnippet is a template system for Emacs. It allows you to type an abbreviation and automatically expand it into function templates. Bundled language templates include: C, C++, C#, Perl, Python, Ruby, SQL, LaTeX, HTML, CSS and more. The snippet syntax is inspired from TextMate's syntax, you can even import most TextMate templates to YASnippet.
+#+end_quote
+
+Setting =yas-indent-line= to fixed has the effect that the text expanded by a snipped is indented as much as where the snipped is invoked.
+
+#+begin_src emacs-lisp
+(use-package yasnippet
+  :straight t
+  :config
+  (yas-global-mode)
+  :custom
+  (yas-indent-line 'fixed))
+#+end_src

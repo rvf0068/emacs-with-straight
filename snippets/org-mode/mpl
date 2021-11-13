@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: matplotlib graph
+# key: mpl
+# --
+
+#+begin_src python :var OUT=(org-babel-temp-file "graph-$1" ".png") :results value file
+fig, ax = plt.subplots(figsize=(3,3))
+
+$0
+
+fig.savefig(OUT, format = 'png', bbox_inches="tight", pad_inches=0)
+OUT
+#+end_src

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: proof as special block
+# expand-env: ((yas-wrap-around-region t))
+# key: proo
+# --
+#+begin_proof
+$0
+#+end_proof

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: yags
+# key: yags
+# --
+
+#+begin_src jupyter-gap :session yags
+$0
+#+end_src

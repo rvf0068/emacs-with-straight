@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: columns
+# key: col
+# --
+***                                                          :B_column:BMCOL:
+    :PROPERTIES:
+    :BEAMER_env: column
+    :BEAMER_col: 0.5
+    :END:
+    $0
+
+***                                                          :B_column:BMCOL:
+    :PROPERTIES:
+    :BEAMER_env: column
+    :BEAMER_col: 0.5
+    :END:
+

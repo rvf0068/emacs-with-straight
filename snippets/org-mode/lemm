@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: lemma as special block
+# expand-env: ((yas-wrap-around-region t))
+# key: lemm
+# --
+#+begin_lemma
+$0
+#+end_lemma
