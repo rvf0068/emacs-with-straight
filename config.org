@@ -31,7 +31,8 @@ For some reason, setting the variable =termux-p= in =:custom= did not work.
        (string-prefix-p "arm-unknown-linux" system-configuration)))
   (setq windows-p
    (string-suffix-p "mingw32" system-configuration))
-  (load custom-file 'noerror))
+  (load custom-file 'noerror)
+  (global-visual-line-mode))
 #+end_src
 
 * abbrev
