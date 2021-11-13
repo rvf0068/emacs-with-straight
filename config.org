@@ -33,11 +33,11 @@ For some reason, setting the variable =termux-p= in =:custom= did not work.
   (setq windows-p
    (string-suffix-p "mingw32" system-configuration))
   (load custom-file 'noerror)
-  (global-visual-line-mode)
   (global-set-key [(f2) (f2)] 'indent-according-to-mode)
   (global-set-key [(f2) (f3)] 'copy-region-as-kill)
   (global-set-key [(f2) (f4)] 'auto-revert-mode)
   :init
+  (global-visual-line-mode +1)
   (recentf-mode +1)
   (show-paren-mode +1))
 #+end_src
@@ -190,6 +190,28 @@ https://gitlab.com/jabranham/mixed-pitch
   :straight t
   :hook
   (text-mode . mixed-pitch-mode))
+#+end_src
+
+* modus themes
+
+https://gitlab.com/protesilaos/modus-themes
+
+#+begin_src emacs-lisp
+(use-package modus-themes
+  :straight t
+  :if (display-graphic-p)
+  :init
+  ;; Add all your customizations prior to loading the themes
+  (setq modus-themes-italic-constructs t
+        modus-themes-bold-constructs nil
+        modus-themes-region '(bg-only no-extend))
+
+  ;; Load the theme files before enabling a theme
+  (modus-themes-load-themes)
+  :config
+  ;; Load the theme of your choice:
+  (modus-themes-load-operandi) ;; OR (modus-themes-load-vivendi)
+  :bind ("<f6> m" . modus-themes-toggle))
 #+end_src
 
 * org mode
