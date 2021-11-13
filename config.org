@@ -35,7 +35,8 @@ For some reason, setting the variable =termux-p= in =:custom= did not work.
   (load custom-file 'noerror)
   (global-visual-line-mode)
   :init
-  (recentf-mode +1))
+  (recentf-mode +1)
+  (show-paren-mode +1))
 #+end_src
 
 
@@ -150,12 +151,14 @@ https://github.com/emacs-dashboard/emacs-dashboard
 #+begin_src emacs-lisp
 (use-package dashboard
   :straight t
-  :after (all-the-icons)
+  :after (all-the-icons projectile)
   :init
   (add-hook 'after-init-hook 'dashboard-refresh-buffer)
   :config
   (dashboard-setup-startup-hook)
+  (add-to-list 'dashboard-items '(projects . 5))
   :custom
+  (dashboard-projects-backend 'projectile)
   (dashboard-set-heading-icons t)
   (dashboard-set-file-icons t)
   (dashboard-set-footer nil))
@@ -326,6 +329,19 @@ When called twice, replace the previously inserted \\(\\) by one $."
 #+begin_src emacs-lisp
 (use-package org-ref
   :straight t)
+#+end_src
+
+* projectile
+
+https://github.com/bbatsov/projectile
+
+#+begin_src emacs-lisp
+(use-package projectile
+  :straight t
+  :init
+  (projectile-mode +1)
+  :bind (:map projectile-mode-map
+              ("C-c p" . projectile-command-map)))
 #+end_src
 
 * yasnippet
