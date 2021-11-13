@@ -316,3 +316,25 @@ Setting =yas-indent-line= to fixed has the effect that the text expanded by a sn
   :custom
   (yas-indent-line 'fixed))
 #+end_src
+
+Snippets defined here:
+
+| key  | binding | Meaning    |
+|------+---------+------------|
+| coro | F6 c    | Corollary  |
+| defi | F6 d    | Definition |
+| lemm | F6 l    | Lemma      |
+| proo | F6 p    | Proof      |
+| theo | F6 t    | Theorem    |
+
+* warnings
+
+This was needed for the snippets for theorems, (since insertion for labels modifies the buffer). See https://emacs.stackexchange.com/a/24471/29.
+
+#+begin_src emacs-lisp
+(use-package warnings
+  :straight (:type built-in)
+  :after (yasnippet)
+  :config
+  (add-to-list 'warning-suppress-types '(yasnippet backquote-change)))
+#+end_src

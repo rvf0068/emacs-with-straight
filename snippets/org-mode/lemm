@@ -1,8 +1,11 @@
 # -*- mode: snippet -*-
 # name: lemma as special block
 # expand-env: ((yas-wrap-around-region t))
+# binding: <f6> l
 # key: lemm
+# condition: (not (org-table-p))
 # --
 #+begin_lemma
+`(org-ref-insert-label-link)`
 $0
 #+end_lemma

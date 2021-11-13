@@ -1,9 +1,11 @@
 # -*- mode: snippet -*-
 # name: theorem as special block
 # expand-env: ((yas-wrap-around-region t))
-# binding: C-c t
+# binding: <f6> t
 # key: theo
+# condition: (not (org-table-p))
 # --
 #+begin_theorem
+`(org-ref-insert-label-link)`
 $0
 #+end_theorem
