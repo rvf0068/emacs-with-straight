@@ -14,6 +14,7 @@
 (straight-use-package 'use-package)
 #+end_src
 
+
 * emacs variables
 
 For some reason, setting the variable =termux-p= in =:custom= did not work.
@@ -32,8 +33,11 @@ For some reason, setting the variable =termux-p= in =:custom= did not work.
   (setq windows-p
    (string-suffix-p "mingw32" system-configuration))
   (load custom-file 'noerror)
-  (global-visual-line-mode))
+  (global-visual-line-mode)
+  :init
+  (recentf-mode +1))
 #+end_src
+
 
 * abbrev
 
@@ -129,6 +133,19 @@ The settings in =cdlatex-math-symbol-alist= are useful also when writing math in
      ("set"  "Insert a set"
       "\\{?\\mid \\}"      cdlatex-position-cursor nil nil t)))
   (cdlatex-simplify-sub-super-scripts nil))
+#+end_src
+
+* dashboard
+
+https://github.com/emacs-dashboard/emacs-dashboard
+
+#+begin_src emacs-lisp
+(use-package dashboard
+  :straight t
+   :init
+  (add-hook 'after-init-hook 'dashboard-refresh-buffer)
+  :config
+  (dashboard-setup-startup-hook))
 #+end_src
 
 * ido
