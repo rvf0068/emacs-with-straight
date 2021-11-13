@@ -34,6 +34,9 @@ For some reason, setting the variable =termux-p= in =:custom= did not work.
    (string-suffix-p "mingw32" system-configuration))
   (load custom-file 'noerror)
   (global-visual-line-mode)
+  (global-set-key [(f2) (f2)] 'indent-according-to-mode)
+  (global-set-key [(f2) (f3)] 'copy-region-as-kill)
+  (global-set-key [(f2) (f4)] 'auto-revert-mode)
   :init
   (recentf-mode +1)
   (show-paren-mode +1))
