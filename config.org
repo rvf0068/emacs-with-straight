@@ -167,6 +167,22 @@ https://github.com/emacs-dashboard/emacs-dashboard
   (dashboard-set-footer nil))
 #+end_src
 
+* flyspell
+
+Flyspell comes with Emacs.
+
+#+begin_quote
+Flyspell enables on-the-fly spell checking in Emacs by the means of a minor mode.
+#+end_quote
+
+#+begin_src emacs-lisp
+(use-package flyspell
+  :straight (:type built-in)
+  :hook
+  (prog-mode . flyspell-prog-mode)
+  (text-mode . flyspell-mode))
+#+end_src
+
 * ido
 
 Ido comes with Emacs.
