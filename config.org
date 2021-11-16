@@ -43,6 +43,14 @@ For some reason, setting the variable =termux-p= in =:custom= did not work.
 #+end_src
 
 
+* personal settings
+
+#+begin_src emacs-lisp
+(setq my-notes-directory "~/Dropbox/org/reading-notes"
+      my-bibliography "~/Dropbox/texmf/bibtex/bib/misc/rvf.bib"
+      my-library-path "~/Documents/References/")
+#+end_src
+
 * abbrev
 
 https://www.gnu.org/software/emacs/manual/html_node/emacs/Abbrevs.html
@@ -181,6 +189,35 @@ Flyspell enables on-the-fly spell checking in Emacs by the means of a minor mode
   :hook
   (prog-mode . flyspell-prog-mode)
   (text-mode . flyspell-mode))
+#+end_src
+
+* helm-bibtex
+
+https://github.com/tmalsburg/helm-bibtex
+
+#+begin_quote
+Search and manage bibliographies in Emacs
+#+end_quote
+
+#+begin_src emacs-lisp
+(use-package helm-bibtex
+  :straight t
+  :after helm
+  :config
+  (defun bibtex-completion-open-pdf-external (keys &optional fallback-action)
+    (let ((bibtex-completion-pdf-open-function
+	   (lambda (fpath)
+	     (call-process "evince" nil 0 nil fpath))))
+      (bibtex-completion-open-pdf (list keys) fallback-action)))
+  (helm-add-action-to-source
+   "Evince" 'bibtex-completion-open-pdf-external
+   helm-source-bibtex 1)
+  :custom
+  (bibtex-completion-bibliography my-bibliography)
+  (bibtex-completion-library-path my-library-path)
+  (bibtex-completion-notes-path my-notes-directory)
+  (bibtex-completion-pdf-extension '(".pdf" ".djvu"))
+  (bibtex-completion-pdf-symbol "☺"))
 #+end_src
 
 * ido
@@ -386,6 +423,51 @@ When called twice, replace the previously inserted \\(\\) by one $."
   :straight t)
 #+end_src
 
+** org-roam
+
+https://www.orgroam.com/
+
+
+
+https://www.orgroam.com/
+
+#+begin_src emacs-lisp
+(use-package org-roam
+  :straight t
+  :init
+  (setq org-roam-v2-ack t)
+  :custom
+  (org-roam-completion-everywhere t)
+  (org-roam-directory my-notes-directory)
+  :config
+  (use-package org-roam-protocol)
+  (org-roam-db-autosync-mode)
+  (org-roam-setup))
+#+end_src
+
+*** org-roam-bibtex
+
+#+begin_src emacs-lisp
+(use-package org-roam-bibtex
+  :straight t
+  :bind (:map org-mode-map
+	      (("C-c n a" . orb-note-actions)))
+  :init
+  (org-roam-bibtex-mode)
+  :custom
+  (orb-insert-interface 'helm-bibtex)
+  (orb-preformat-keywords
+   '("citekey" "title" "url" "author-or-editor" "keywords" "file"))
+  (orb-process-file-keyword t)
+  (orb-file-field-extensions '("pdf"))
+  :config
+  (add-to-list 'org-roam-capture-templates
+      `("r" "bibliography reference" plain
+	 (file ,(concat user-emacs-directory "orb-template.org"))
+         :if-new
+         (file+head "references/${citekey}.org" "#+title: ${title} by ${author-or-editor}\n"))))
+#+end_src
+
 * projectile
 
 https://github.com/bbatsov/projectile
@@ -403,9 +485,9 @@ https://github.com/bbatsov/projectile
 
 https://github.com/Fuco1/smartparens
 
-#+BEGIN_QUOTE
+#+begin_quote
 Smartparens is a minor mode for dealing with pairs in Emacs.
-#+END_QUOTE
+#+end_quote
 
 #+begin_src emacs-lisp
 (use-package smartparens
