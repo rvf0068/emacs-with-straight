@@ -197,6 +197,20 @@ The Ido package lets you switch between buffers and visit files and directories 
   (ido-mode 1))
 #+end_src
 
+* magit
+
+https://magit.vc
+
+#+begin_quote
+Magit is a complete text-based user interface to Git.
+#+end_quote
+
+#+begin_src emacs-lisp
+(use-package magit
+  :straight t
+  :bind ("C-c m" . magit-status))
+#+end_src
+
 * mixed pitch
 
 https://gitlab.com/jabranham/mixed-pitch
