@@ -399,6 +399,27 @@ https://github.com/bbatsov/projectile
               ("C-c p" . projectile-command-map)))
 #+end_src
 
+* smartparens
+
+https://github.com/Fuco1/smartparens
+
+#+BEGIN_QUOTE
+Smartparens is a minor mode for dealing with pairs in Emacs.
+#+END_QUOTE
+
+#+begin_src emacs-lisp
+(use-package smartparens
+  :straight t
+  :config
+  (require 'smartparens-config)
+  (smartparens-global-mode 1)
+  (show-smartparens-global-mode 1)
+  (sp-local-pair 'org-mode "=" "="
+		 :unless '(sp-point-after-word-p sp-in-math-p)
+		 :post-handlers '(("[d1]" "SPC")))
+  (sp-local-pair 'python-mode "``" "``"))
+#+end_src
+
 * yasnippet
 
 https://github.com/joaotavora/yasnippet
@@ -450,3 +471,4 @@ This was needed for the snippets for theorems, (since insertion for labels modif
   :config
   (which-key-mode))
 #+end_src
+
