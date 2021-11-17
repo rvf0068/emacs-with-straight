@@ -223,6 +223,35 @@ https://github.com/emacs-dashboard/emacs-dashboard
   (dashboard-set-footer nil))
 #+end_src
 
+* deft
+
+https://jblevins.org/projects/deft/
+
+#+begin_quote
+Deft is an Emacs mode for quickly browsing, filtering, and editing directories of plain text notes, inspired by Notational Velocity. It was designed for increased productivity when writing and taking notes by making it fast and simple to find the right file at the right time and by automating many of the usual tasks such as creating new files and saving files.
+#+end_quote
+
+#+begin_src emacs-lisp
+(use-package deft
+  :straight t
+  :after org
+  :bind
+  ("C-c n d" . deft)
+  :custom
+  (deft-auto-save-interval 0)
+  (deft-default-extension "org")
+  (deft-directory my-notes-directory)
+  (deft-extensions '("org" "tex"))
+  (deft-file-naming-rules '((noslash . "-")
+			    (nospace . "-")
+			    (case-fn . downcase)))
+  (deft-ignore-file-regexp "options\\.org\\|readme\\.org")
+  (deft-recursive t)
+  (deft-strip-summary-regexp ":PROPERTIES:\n\\(.+\n\\)+:END:\n")
+  (deft-use-filename-as-title 't)
+  (deft-use-filter-string-for-filename t))
+#+end_src
+
 * flyspell
 
 Flyspell comes with Emacs.
@@ -593,6 +622,15 @@ Smartparens is a minor mode for dealing with pairs in Emacs.
 		 :unless '(sp-point-after-word-p sp-in-math-p)
 		 :post-handlers '(("[d1]" "SPC")))
   (sp-local-pair 'python-mode "``" "``"))
+#+end_src
+
+* telega
+
+https://github.com/zevlg/telega.el
+
+#+begin_src emacs-lisp
+(use-package telega
+  :straight t)
 #+end_src
 
 * vertico
