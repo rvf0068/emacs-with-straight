@@ -124,6 +124,41 @@ An Emacs library for searching and downloading BibTeX entries from the web.
   :straight t)
 #+end_src
 
+* bibtex
+
+#+begin_src emacs-lisp
+(use-package bibtex
+  :straight (:type built-in)
+  :custom
+  (bibtex-autokey-year-title-separator "-")
+  (bibtex-autokey-year-length 4)
+  (bibtex-autokey-names nil)
+  (bibtex-autokey-name-separator "-")
+  (bibtex-autokey-name-year-separator "-")
+  (bibtex-autokey-titleword-separator "-")
+  (bibtex-autokey-titleword-length "All")
+  (bibtex-autokey-titlewords "All")
+  (bibtex-autokey-titleword-ignore "")
+  :init
+  (defun bibtex-generate-autokey ()
+    (let* ((names (bibtex-autokey-get-names))
+           (year (bibtex-autokey-get-year))
+           (title (bibtex-autokey-get-title))
+           (autokey (concat year
+                            (unless (or (equal names "")
+					(equal year ""))
+                              bibtex-autokey-name-year-separator)
+                            names
+                            (unless (or (and (equal names "")
+                                             (equal year ""))
+					(equal title ""))
+                              bibtex-autokey-year-title-separator)
+                            title)))
+      (if bibtex-autokey-before-presentation-function
+          (funcall bibtex-autokey-before-presentation-function autokey)
+	autokey))))
+#+end_src
+
 * cdlatex                                                              :math:
 
 https://staff.fnwi.uva.nl/c.dominik/Tools/cdlatex/
