@@ -281,6 +281,21 @@ https://gitlab.com/protesilaos/modus-themes
   :bind ("<f6> m" . modus-themes-toggle))
 #+end_src
 
+* orderless
+
+#+begin_src emacs-lisp
+(use-package orderless
+  :straight t
+  :init
+  ;; Configure a custom style dispatcher (see the Consult wiki)
+  ;; (setq orderless-style-dispatchers '(+orderless-dispatch)
+  ;;       orderless-component-separator #'orderless-escapable-split-on-space)
+  (setq completion-styles '(orderless)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles partial-completion)))))
+
+#+end_src
+
 * org mode
 
 Org mode comes with Emacs.
@@ -502,6 +517,23 @@ Smartparens is a minor mode for dealing with pairs in Emacs.
   (sp-local-pair 'python-mode "``" "``"))
 #+end_src
 
+* vertico
+
+#+begin_src emacs-lisp
+(use-package vertico
+  :straight t
+  :init
+  (vertico-mode)
+  ;; Different scroll margin
+  ;; (setq vertico-scroll-margin 0)
+  ;; Show more candidates
+  ;; (setq vertico-count 20)
+  ;; Grow and shrink the Vertico minibuffer
+  ;; (setq vertico-resize t)
+  ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
+  ;; (setq vertico-cycle t)
+  )
+#+end_src
 * yasnippet
 
 https://github.com/joaotavora/yasnippet
