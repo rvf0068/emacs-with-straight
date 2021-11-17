@@ -111,6 +111,19 @@ AUCTeX is an extensible package for writing and formatting TeX files in GNU Emac
   (LaTeX-mode . turn-on-reftex))
 #+end_src
 
+* bibretrieve
+
+https://github.com/pzorin/bibretrieve
+
+#+begin_quote
+An Emacs library for searching and downloading BibTeX entries from the web.
+#+end_quote
+
+#+begin_src emacs-lisp
+(use-package bibretrieve
+  :straight t)
+#+end_src
+
 * cdlatex                                                              :math:
 
 https://staff.fnwi.uva.nl/c.dominik/Tools/cdlatex/
