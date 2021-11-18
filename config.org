@@ -252,6 +252,57 @@ Deft is an Emacs mode for quickly browsing, filtering, and editing directories o
   (deft-use-filter-string-for-filename t))
 #+end_src
 
+* dired
+
+  https://www.gnu.org/software/emacs/manual/html_node/emacs/Dired.html
+
+#+begin_quote
+Dired makes an Emacs buffer containing a listing of a directory, and optionally some of its subdirectories as well. You can use the normal Emacs commands to move around in this buffer, and special Dired commands to operate on the listed files.
+#+end_quote
+
+#+begin_src emacs-lisp
+(use-package dired
+  :straight (:type built-in)
+  :custom
+  (dired-dwim-target t)
+  (use-package dired-x))
+#+end_src
+
+** all-the-icons-dired
+
+#+begin_src emacs-lisp
+(use-package all-the-icons-dired
+  :straight t
+  :after (all-the-icons)
+  :hook (dired-mode . all-the-icons-dired-mode))
+#+end_src
+
+** dired-aux
+
+#+begin_src emacs-lisp
+(use-package dired-aux
+  :straight (:type built-in))
+#+end_src
+
+** dired-open
+
+When pressing =RET=, in dired, files will be opened with =xdg-open=. If one wants to open in Emacs, use =C-u RET=. The setting for =process-connection-type= was needed, see https://askubuntu.com/a/824123/8975.
+
+#+begin_src emacs-lisp
+(use-package dired-open
+  :straight t
+  :custom
+  (dired-open-functions '(dired-open-xdg))
+  (process-connection-type nil))
+#+end_src
+
+** dired-x
+
+#+begin_src emacs-lisp
+(use-package dired-x
+  :straight (:type built-in))
+#+end_src
+
 * flyspell
 
 Flyspell comes with Emacs.
