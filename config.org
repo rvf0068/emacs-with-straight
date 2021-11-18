@@ -8,6 +8,15 @@
 
 #+startup: overview
 
+* personal settings
+
+#+begin_src emacs-lisp
+(setq my-notes-directory "~/Dropbox/org/reading-notes"
+      my-bibliography "~/Dropbox/texmf/bibtex/bib/misc/rvf.bib"
+      my-library-path "~/Documents/References/")
+#+end_src
+
+
 * use-package
 
 #+begin_src emacs-lisp
@@ -29,6 +38,7 @@ For some reason, setting the variable =termux-p= in =:custom= did not work.
   ([(f2) (f2)] . indent-according-to-mode)
   ([(f2) (f4)] . auto-revert-mode)
   ([(f7)] . helm-bibtex)
+  ("<f8> b" . open-my-bibliography)
   :custom
   (confirm-nonexistent-file-or-buffer nil)
   (custom-file (concat user-emacs-directory "custom.el"))
@@ -45,6 +55,9 @@ For some reason, setting the variable =termux-p= in =:custom= did not work.
   (global-visual-line-mode +1)
   (recentf-mode +1)
   (show-paren-mode +1)
+  (defun open-my-bibliography ()
+      (interactive)
+    (find-file my-bibliography))
   ;; From: sandipchitale@yahoo.com (Sandip Chitale)
   ;; Newsgroups: gnu.emacs.sources
   ;; Subject: CODE: Duplicate line or region backward or forward
@@ -72,15 +85,6 @@ For some reason, setting the variable =termux-p= in =:custom= did not work.
   ;(global-set-key [(super down)] 'duplicate-line-forward)
   ;(global-set-key [(super up)] 'duplicate-line-backward)
   )
-#+end_src
-
-
-* personal settings
-
-#+begin_src emacs-lisp
-(setq my-notes-directory "~/Dropbox/org/reading-notes"
-      my-bibliography "~/Dropbox/texmf/bibtex/bib/misc/rvf.bib"
-      my-library-path "~/Documents/References/")
 #+end_src
 
 * abbrev
@@ -162,8 +166,8 @@ An Emacs library for searching and downloading BibTeX entries from the web.
 (use-package bibtex
   :straight (:type built-in)
   :bind (:map bibtex-mode-map
-	      ([(f5) b] . bibretrieve)
-	      ([(f5) m] . mark-sexp))
+	      ("<f5> b" . bibretrieve)
+	      ("<f5> m" . mark-sexp))
   :custom
   (bibtex-autokey-year-title-separator "-")
   (bibtex-autokey-year-length 4)
