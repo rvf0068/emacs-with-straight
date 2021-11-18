@@ -254,7 +254,7 @@ Deft is an Emacs mode for quickly browsing, filtering, and editing directories o
 
 * dired
 
-  https://www.gnu.org/software/emacs/manual/html_node/emacs/Dired.html
+https://www.gnu.org/software/emacs/manual/html_node/emacs/Dired.html
 
 #+begin_quote
 Dired makes an Emacs buffer containing a listing of a directory, and optionally some of its subdirectories as well. You can use the normal Emacs commands to move around in this buffer, and special Dired commands to operate on the listed files.
@@ -286,13 +286,18 @@ Dired makes an Emacs buffer containing a listing of a directory, and optionally 
 
 ** dired-open
 
-When pressing =RET=, in dired, files will be opened with =xdg-open=. If one wants to open in Emacs, use =C-u RET=. The setting for =process-connection-type= was needed, see https://askubuntu.com/a/824123/8975.
+When pressing =RET=, in dired, files will be opened with =xdg-open=. If one wants to open in Emacs, use =C-u RET=. The setting for =process-connection-type= was needed for me, see https://askubuntu.com/a/824123/8975.
 
 #+begin_src emacs-lisp
 (use-package dired-open
   :straight t
   :custom
-  (dired-open-functions '(dired-open-xdg))
+  (dired-guess-shell-alist-user
+   '(("\\.mp3\\'" "xdg-open")
+     ("\\.mp4\\'" "xdg-open")
+     ("\\.pdf\\'" "xdg-open")
+     ("\\.ps\\'" "xdg-open")))
+  (dired-open-functions '(dired-open-guess-shell-alist))
   (process-connection-type nil))
 #+end_src
 
