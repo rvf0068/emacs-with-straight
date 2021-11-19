@@ -603,6 +603,18 @@ When called twice, replace the previously inserted \\(\\) by one $."
   (add-hook 'org-mode-hook 'org-fragtog-mode))
 #+end_src
 
+** org-noter
+
+https://github.com/weirdNox/org-noter
+
+#+begin_src emacs-lisp
+(use-package org-noter
+  :straight t
+  :custom
+  (org-noter-auto-save-last-location t)
+  (org-noter-notes-search-path '(my-notes-directory)))
+#+end_src
+
 ** org-ref
 
 #+begin_src emacs-lisp
