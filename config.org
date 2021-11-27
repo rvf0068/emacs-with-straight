@@ -681,6 +681,13 @@ https://www.orgroam.com/
           org-roam-ui-open-on-start t))
 #+end_src
 
+** org-web-tools
+
+#+begin_src emacs-lisp
+(use-package org-web-tools
+  :straight t)
+#+end_src
+
 * pdf-tools
 
 https://github.com/politza/pdf-tools
