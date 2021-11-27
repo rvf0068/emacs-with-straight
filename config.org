@@ -242,6 +242,23 @@ The settings in =cdlatex-math-symbol-alist= are useful also when writing math in
   (cdlatex-simplify-sub-super-scripts nil))
 #+end_src
 
+* consult
+
+#+begin_src emacs-lisp
+(use-package consult
+  :straight t)
+#+end_src
+
+** consult-bibtex
+
+https://github.com/mohkale/consult-bibtex
+
+#+begin_src emacs-lisp
+(use-package consult-bibtex
+  :straight (:host github :repo "mohkale/consult-bibtex")
+  :after consult)
+#+end_src
+
 * dashboard
 
 https://github.com/emacs-dashboard/emacs-dashboard
