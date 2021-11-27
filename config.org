@@ -364,6 +364,13 @@ When pressing =RET=, in dired, files will be opened with =xdg-open=. If one want
   :straight (:type built-in))
 #+end_src
 
+* embark
+
+#+begin_src emacs-lisp
+(use-package embark
+  :straight t)
+#+end_src
+
 * flyspell
 
 Flyspell comes with Emacs.
@@ -435,6 +442,15 @@ Magit is a complete text-based user interface to Git.
 (use-package magit
   :straight t
   :bind ("C-c m" . magit-status))
+#+end_src
+
+* marginalia
+
+#+begin_src emacs-lisp
+(use-package marginalia
+  :straight t
+  :init
+  (marginalia-mode))
 #+end_src
 
 * mixed pitch
