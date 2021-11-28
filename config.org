@@ -259,6 +259,20 @@ https://github.com/mohkale/consult-bibtex
   :after consult)
 #+end_src
 
+** consult-dir
+
+https://github.com/karthink/consult-dir
+
+#+begin_src emacs-lisp
+(use-package consult-dir
+  :straight t
+  :after (consult vertico)
+  :bind (("C-x C-d" . consult-dir)
+         :map vertico-map
+         ("C-x C-d" . consult-dir)
+         ("C-x C-j" . consult-dir-jump-file)))
+#+end_src
+
 * dashboard
 
 https://github.com/emacs-dashboard/emacs-dashboard
