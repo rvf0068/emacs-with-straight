@@ -617,6 +617,10 @@ When called twice, replace the previously inserted \\(\\) by one $."
 	       'replace-math-md)
   :config
   (require 'ox-beamer)
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((latex . t)
+     (python . t)))
   (font-lock-add-keywords
    'org-mode
    '(("^ *\\([-]\\) "
