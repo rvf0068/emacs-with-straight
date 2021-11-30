@@ -26,6 +26,12 @@
 
 * emacs variables and functions
 
+From https://www.gnu.org/software/emacs/manual/html_node/elisp/Key-Binding-Conventions.html
+
+#+begin_quote
+Sequences consisting of C-c and a letter (either upper or lower case) are reserved for users. Function keys F5 through F9 without modifier keys are also reserved for users to define.
+#+end_quote
+
 For some reason, setting the variable =termux-p= in =:custom= did not work.
 
 #+begin_src emacs-lisp
@@ -39,6 +45,7 @@ For some reason, setting the variable =termux-p= in =:custom= did not work.
   ([(f2) (f4)] . auto-revert-mode)
   ([(f7)] . helm-bibtex)
   ("<f8> b" . open-my-bibliography)
+  ("<f8> f" . org-roam-node-find)
   :custom
   (confirm-nonexistent-file-or-buffer nil)
   (custom-file (concat user-emacs-directory "custom.el"))
@@ -81,11 +88,9 @@ For some reason, setting the variable =termux-p= in =:custom= did not work.
                        (line-end-position))))
 	(end-of-line)
 	(insert ?\n contents)))
-    (next-line 1))
-  ;(global-set-key [(super down)] 'duplicate-line-forward)
-  ;(global-set-key [(super up)] 'duplicate-line-backward)
-  )
+    (next-line 1)))
 #+end_src
+
 
 * abbrev
 
@@ -536,6 +541,7 @@ Org mode is for keeping notes, maintaining to-do lists, planning projects, autho
 	 ;; these two next functions are defined in the :init section
 	 ("$" . yf/org-electric-dollar)
 	 ("|" . org-absolute-value)
+	 ("<f5> n" . org-noter)
 	 ([?\s-j] . org-babel-next-src-block)
 	 ([?\s-k] . org-babel-previous-src-block)
 	 ([?\s-l] . org-edit-src-code)
