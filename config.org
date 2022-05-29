@@ -717,6 +717,18 @@ When called twice, replace the previously inserted \\(\\) by one $."
   :straight t
   :after sage-shell-mode)
 #+end_src
+
+** org-appear
+
+https://github.com/awth13/org-appear
+
+#+begin_src emacs-lisp
+(use-package org-appear
+  :straight t
+  :init
+  (add-hook 'org-mode-hook 'org-appear-mode))
+#+end_src
+
 ** org-fragtog
 
 #+begin_src emacs-lisp
