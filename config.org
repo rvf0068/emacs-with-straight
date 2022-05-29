@@ -1019,6 +1019,13 @@ https://github.com/bbatsov/projectile
               ("C-c p" . projectile-command-map)))
 #+end_src
 
+* sage-shell-mode
+
+#+begin_src emacs-lisp
+(use-package sage-shell-mode
+  :straight t)
+#+end_src
+
 * smartparens
 
 https://github.com/Fuco1/smartparens
