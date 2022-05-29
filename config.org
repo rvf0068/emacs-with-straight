@@ -266,6 +266,8 @@ http://company-mode.github.io/
 
 * consult
 
+=consult-imenu= and =consult-line= are interesting to navigate files, especially org-mode files.
+
 #+begin_src emacs-lisp
 (use-package consult
   :straight t)
@@ -431,7 +433,9 @@ https://github.com/jorgenschaefer/elpy
 
 #+begin_src emacs-lisp
 (use-package embark
-  :straight t)
+  :straight t
+  :bind
+  (("C-=" . embark-act)))
 #+end_src
 
 * flyspell
@@ -604,6 +608,7 @@ Org mode is for keeping notes, maintaining to-do lists, planning projects, autho
 	 ([?\s-j] . org-babel-next-src-block)
 	 ([?\s-k] . org-babel-previous-src-block)
 	 ([?\s-l] . org-edit-src-code)
+	 ("C-M-i" . completion-at-point)
 	 :map org-src-mode-map
 	 ([?\s-l] . org-edit-src-exit))
   :init
@@ -622,7 +627,7 @@ When called twice, replace the previously inserted \\(\\) by one $."
       (backward-char 2)))
   ;; see https://lists.gnu.org/archive/html/emacs-orgmode/2015-09/msg00118.html
   (defmacro by-backend (&rest body)
-    `(case org-export-current-backend ,@body))
+    `(cl-case org-export-current-backend ,@body))
   ;; see http://endlessparentheses.com/ispell-and-org-mode.html
   (defun endless/org-ispell ()
     "Configure `ispell-skip-region-alist' for `org-mode'."
@@ -934,7 +939,7 @@ capture was not aborted."
       `("r" "bibliography reference" plain
 	 (file ,(concat user-emacs-directory "orb-template.org"))
          :if-new
-         (file+head "references/${citekey}.org" "#+title: ${title} by ${author-or-editor}\n"))))
+         (file+head "references/${citekey}.org" "#+title: ${title} by ${author-or-editor}\n")) t))
 #+end_src
 
 *** org-roam-ui
