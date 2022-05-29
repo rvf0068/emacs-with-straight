@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: jupyter-gap
-# key: jgap
+# key: <g
 # --
 #+begin_src jupyter-gap
 $0

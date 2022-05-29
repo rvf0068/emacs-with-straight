@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: equation as special block
+# expand-env: ((yas-wrap-around-region t))
+# binding: <f6> e
+# key: equa
+# condition: (not (org-table-p))
+# --
+#+begin_equation
+`(org-ref-insert-label-link)`
+$0
+#+end_equation
