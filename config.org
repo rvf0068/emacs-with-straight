@@ -416,6 +416,17 @@ https://github.com/jojojames/dired-sidebar
   :straight (:type built-in))
 #+end_src
 
+* elpy
+
+https://github.com/jorgenschaefer/elpy
+
+#+begin_src emacs-lisp
+(use-package elpy
+  :straight t
+  :init
+  (elpy-enable))
+#+end_src
+
 * embark
 
 #+begin_src emacs-lisp
