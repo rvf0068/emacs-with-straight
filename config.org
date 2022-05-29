@@ -399,6 +399,14 @@ When pressing =RET=, in dired, files will be opened with =setsid xdg-open=. If o
   (dired-open-functions '(dired-open-guess-shell-alist)))
 #+end_src
 
+** dired-sidebar
+
+https://github.com/jojojames/dired-sidebar
+
+#+begin_src emacs-lisp
+(use-package dired-sidebar
+  :straight t
+  :commands (dired-sidebar-toggle-sidebar))
 #+end_src
 
 ** dired-x
