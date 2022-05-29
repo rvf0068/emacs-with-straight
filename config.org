@@ -385,19 +385,20 @@ Dired makes an Emacs buffer containing a listing of a directory, and optionally 
 
 ** dired-open
 
-When pressing =RET=, in dired, files will be opened with =xdg-open=. If one wants to open in Emacs, use =C-u RET=. The setting for =process-connection-type= was needed for me, see https://askubuntu.com/a/824123/8975.
+When pressing =RET=, in dired, files will be opened with =setsid xdg-open=. If one wants to open in Emacs, use =C-u RET=. The setting for =setsid= was needed for me, see https://askubuntu.com/a/824123/8975.
 
 #+begin_src emacs-lisp
 (use-package dired-open
   :straight t
   :custom
   (dired-guess-shell-alist-user
-   '(("\\.mp3\\'" "xdg-open")
-     ("\\.mp4\\'" "xdg-open")
-     ("\\.pdf\\'" "xdg-open")
-     ("\\.ps\\'" "xdg-open")))
-  (dired-open-functions '(dired-open-guess-shell-alist))
-  (process-connection-type nil))
+   '(("\\.mp3\\'" "setsid xdg-open")
+     ("\\.mp4\\'" "setsid xdg-open")
+     ("\\.pdf\\'" "setsid xdg-open")
+     ("\\.ps\\'" "setsid xdg-open")))
+  (dired-open-functions '(dired-open-guess-shell-alist)))
+#+end_src
+
 #+end_src
 
 ** dired-x
