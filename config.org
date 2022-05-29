@@ -710,6 +710,13 @@ When called twice, replace the previously inserted \\(\\) by one $."
   (org-babel-after-execute . org-redisplay-inline-images))
 #+end_src
 
+** ob-sagemath
+
+#+begin_src emacs-lisp
+(use-package ob-sagemath
+  :straight t
+  :after sage-shell-mode)
+#+end_src
 ** org-fragtog
 
 #+begin_src emacs-lisp
