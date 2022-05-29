@@ -253,6 +253,17 @@ The settings in =cdlatex-math-symbol-alist= are useful also when writing math in
   (cdlatex-simplify-sub-super-scripts nil))
 #+end_src
 
+* company-mode
+
+http://company-mode.github.io/
+
+#+begin_src emacs-lisp
+(use-package company
+  :straight t
+  :init
+  (add-hook 'after-init-hook 'global-company-mode))
+#+end_src
+
 * consult
 
 #+begin_src emacs-lisp
