@@ -750,6 +750,15 @@ https://github.com/weirdNox/org-noter
   (org-noter-notes-search-path '(my-notes-directory)))
 #+end_src
 
+** org-pomodoro
+
+https://github.com/marcinkoziej/org-pomodoro
+
+#+begin_src emacs-lisp
+(use-package org-pomodoro
+  :straight t)
+#+end_src
+
 ** org-ref
 
 #+begin_src emacs-lisp
