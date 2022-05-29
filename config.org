@@ -344,6 +344,13 @@ Deft is an Emacs mode for quickly browsing, filtering, and editing directories o
   (deft-use-filter-string-for-filename t))
 #+end_src
 
+* dictionary
+
+#+begin_src emacs-lisp
+(use-package dictionary
+  :straight t)
+#+end_src
+
 * dired
 
 https://www.gnu.org/software/emacs/manual/html_node/emacs/Dired.html
