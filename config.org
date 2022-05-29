@@ -955,6 +955,13 @@ capture was not aborted."
           org-roam-ui-open-on-start t))
 #+end_src
 
+** org-tree-slide
+
+#+begin_src emacs-lisp
+(use-package org-tree-slide
+  :straight t)
+#+end_src
+
 ** org-web-tools
 
 #+begin_src emacs-lisp
