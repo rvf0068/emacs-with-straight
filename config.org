@@ -45,7 +45,12 @@ For some reason, setting the variable =termux-p= in =:custom= did not work.
   ([(f2) (f4)] . auto-revert-mode)
   ([(f7)] . helm-bibtex)
   ("<f8> b" . open-my-bibliography)
+  ("<f8> c" . org-ref-cite-insert-helm)
+  ("<f8> d" . org-ref-insert-cite-link)
   ("<f8> f" . org-roam-node-find)
+  ("<f8> i" . org-roam-node-insert)
+  ("<f8> l" . org-ref-insert-label-link)
+  ("<f8> r" . org-ref-insert-ref-link)
   :custom
   (confirm-nonexistent-file-or-buffer nil)
   (custom-file (concat user-emacs-directory "custom.el"))
