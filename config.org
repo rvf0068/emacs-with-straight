@@ -993,6 +993,19 @@ PDF Tools is, among other things, a replacement of DocView for PDF files. The ke
   (pdf-tools-install))
 #+end_src
 
+* perspective
+
+https://github.com/nex3/perspective-el
+
+#+begin_src emacs-lisp
+(use-package perspective
+  :straight t
+  :bind
+  ("C-x C-b" . persp-list-buffers)   ; or use a nicer switcher, see below
+  :config
+  (persp-mode))
+#+end_src
+
 * projectile
 
 https://github.com/bbatsov/projectile
