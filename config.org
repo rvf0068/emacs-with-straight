@@ -493,6 +493,21 @@ The Ido package lets you switch between buffers and visit files and directories 
   (ido-mode 1))
 #+end_src
 
+* jupyter
+
+https://github.com/nnicandro/emacs-jupyter
+
+#+begin_src emacs-lisp
+(use-package jupyter
+  :straight t
+  :config
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((latex . t)
+     (python . t)
+     (jupyter . t))))
+#+end_src
+
 * magit
 
 https://magit.vc
