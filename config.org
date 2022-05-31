@@ -503,6 +503,7 @@ https://github.com/nnicandro/emacs-jupyter
 
 #+begin_src emacs-lisp
 (use-package jupyter
+  :if (executable-find "jupyter")
   :straight t
   :config
   (org-babel-do-load-languages
