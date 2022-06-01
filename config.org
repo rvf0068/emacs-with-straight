@@ -454,6 +454,22 @@ Flyspell enables on-the-fly spell checking in Emacs by the means of a minor mode
   (text-mode . flyspell-mode))
 #+end_src
 
+* gap-mode
+
+https://www.gap-system.org/Packages/Contrib/emacs.html
+
+#+begin_quote
+An Emacs major-mode for editing GAP files.
+#+end_quote
+
+#+begin_src emacs-lisp
+(use-package gap-mode
+  :straight t
+  :custom
+  (gap-executable "gap")
+  (gap-start-options  '("-E" "-f" "-b" "-m" "1024m")))
+#+end_src
+
 * helm-bibtex
 
 https://github.com/tmalsburg/helm-bibtex
