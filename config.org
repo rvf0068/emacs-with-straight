@@ -1082,6 +1082,22 @@ https://github.com/zevlg/telega.el
   :straight t)
 #+end_src
 
+* twittering-mode
+
+https://github.com/hayamiz/twittering-mode
+
+#+begin_src emacs-lisp
+(use-package twittering-mode
+  :straight
+  (:host github :repo "hayamiz/twittering-mode")
+  :init
+  (defalias 'epa--decode-coding-string 'decode-coding-string)
+  :config
+  (setq twittering-use-master-password t))
+#+end_src
+
+I obtained an error in Emacs 29, and the suggestion in  https://github.com/hayamiz/twittering-mode/issues/154#issue-382570826 fixed it (use =defalias=).
+
 * vertico
 
 #+begin_src emacs-lisp
