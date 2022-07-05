@@ -364,6 +364,10 @@ Dired makes an Emacs buffer containing a listing of a directory, and optionally 
 #+begin_src emacs-lisp
 (use-package dired
   :straight (:type built-in)
+  :init
+  (add-hook 'dired-mode-hook
+	    (lambda ()
+              (dired-hide-details-mode)))
   :custom
   (dired-dwim-target t)
   (use-package dired-x))
