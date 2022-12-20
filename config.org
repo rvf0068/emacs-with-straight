@@ -154,6 +154,7 @@ AUCTeX is an extensible package for writing and formatting TeX files in GNU Emac
   (reftex-plug-into-AUCTeX t)
   (reftex-use-external-file-finders t)
   :hook
+  (LaTeX-mode . cdlatex-mode)
   (LaTeX-mode . my-latex-config)
   (LaTeX-mode . turn-on-reftex))
 #+end_src
