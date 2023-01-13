@@ -584,10 +584,9 @@ https://gitlab.com/protesilaos/modus-themes
         modus-themes-region '(bg-only no-extend))
 
   ;; Load the theme files before enabling a theme
-  (modus-themes-load-themes)
+  (load-theme 'modus-operandi)
   :config
   ;; Load the theme of your choice:
-  (modus-themes-load-operandi) ;; OR (modus-themes-load-vivendi)
   :bind ("<f6> m" . modus-themes-toggle))
 #+end_src
 
