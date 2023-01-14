@@ -558,6 +558,26 @@ Magit is a complete text-based user interface to Git.
   (marginalia-mode))
 #+end_src
 
+* math-delimiters
+
+https://github.com/oantolin/math-delimiters
+
+#+begin_quote
+This package provides the command math-delimiters-insert to insert TeX/LaTeX math delimiters.
+#+end_quote
+
+#+begin_src emacs-lisp
+(use-package math-delimiters
+  :straight (:host github :repo "oantolin/math-delimiters")
+  :after (org tex-mode cdlatex)
+  :bind (:map org-mode-map
+	 ("$" . math-delimiters-insert)
+	 :map tex-mode-map
+	 ("$" . math-delimiters-insert)
+	 :map cdlatex-mode-map
+	 ("$" . nil)))
+#+end_src
+
 * mixed pitch
 
 https://gitlab.com/jabranham/mixed-pitch
@@ -624,7 +644,6 @@ Org mode is for keeping notes, maintaining to-do lists, planning projects, autho
 	 ("C-c l" . org-store-link)
 	 :map org-mode-map
 	 ;; these two next functions are defined in the :init section
-	 ("$" . yf/org-electric-dollar)
 	 ("|" . org-absolute-value)
 	 ("<f5> n" . org-noter)
 	 ([?\s-j] . org-babel-next-src-block)
@@ -634,19 +653,6 @@ Org mode is for keeping notes, maintaining to-do lists, planning projects, autho
 	 :map org-src-mode-map
 	 ([?\s-l] . org-edit-src-exit))
   :init
-  ;; from Nicolas Richard <theonewiththeevillook@yahoo.fr>
-  ;; Date: Fri, 8 Mar 2013 16:23:02 +0100
-  ;; Message-ID: <87vc913oh5.fsf@yahoo.fr>
-  (defun yf/org-electric-dollar nil
-    "When called once, insert \\(\\) and leave point in between.
-When called twice, replace the previously inserted \\(\\) by one $."
-    (interactive)
-    (if (and (looking-at "\\\\)") (looking-back "\\\\("))
-	(progn (delete-char 2)
-	       (delete-char -2)
-	       (insert "$"))
-      (insert "\\(\\)")
-      (backward-char 2)))
   ;; see https://lists.gnu.org/archive/html/emacs-orgmode/2015-09/msg00118.html
   (defmacro by-backend (&rest body)
     `(cl-case org-export-current-backend ,@body))
