@@ -24,7 +24,6 @@
 (straight-use-package 'use-package)
 #+end_src
 
-
 * emacs variables and functions
 
 From https://www.gnu.org/software/emacs/manual/html_node/elisp/Key-Binding-Conventions.html
@@ -98,8 +97,7 @@ For some reason, setting the variable =termux-p= in =:custom= did not work.
     (next-line 1)))
 #+end_src
 
-
-* abbrev
+* abbrev                                                               :text:
 
 https://www.gnu.org/software/emacs/manual/html_node/emacs/Abbrevs.html
 
@@ -111,7 +109,7 @@ https://www.gnu.org/software/emacs/manual/html_node/emacs/Abbrevs.html
   (text-mode . abbrev-mode))
 #+end_src
 
-* all-the-icons
+* all-the-icons                                                        :look:
 
 #+begin_src emacs-lisp
 (use-package all-the-icons
@@ -123,9 +121,9 @@ https://www.gnu.org/software/emacs/manual/html_node/emacs/Abbrevs.html
 
 https://www.gnu.org/software/auctex/
 
-#+BEGIN_QUOTE
+#+begin_quote
 AUCTeX is an extensible package for writing and formatting TeX files in GNU Emacs and XEmacs. It supports many different TeX macro packages, including AMS-TeX, LaTeX, Texinfo, ConTeXt, and docTeX (dtx files).
-#+END_QUOTE
+#+end_quote
 
 #+begin_src emacs-lisp
 (use-package tex
@@ -909,6 +907,8 @@ https://github.com/marcinkoziej/org-pomodoro
 
 ** org-roam
 
+This video explains the idea of org-roam:  [[https://www.youtube.com/watch?v=Lg61ocfxk3c][Making Connections in your Notes]].
+
 https://www.orgroam.com/
 
 #+begin_src emacs-lisp
@@ -1083,7 +1083,7 @@ capture was not aborted."
 #+begin_src emacs-lisp
 (use-package org-roam-ui
   :straight
-    (:host github :repo "org-roam/org-roam-ui" :branch "main" :files ("*.el" "out"))
+  (:host github :repo "org-roam/org-roam-ui" :branch "main" :files ("*.el" "out"))
     :after org-roam
 ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
 ;;         a hookable mode anymore, you're advised to pick something yourself
