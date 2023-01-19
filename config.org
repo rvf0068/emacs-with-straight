@@ -441,6 +441,26 @@ https://github.com/jojojames/dired-sidebar
   :straight (:type built-in))
 #+end_src
 
+* elfeed
+
+#+begin_src emacs-lisp
+(use-package elfeed
+  :straight t
+  :custom
+  (browse-url-browser-function 'eww-browse-url)
+  (elfeed-sort-order 'ascending))
+#+end_src
+
+** elfeed-org
+
+https://github.com/remyhonig/elfeed-org
+
+#+begin_src emacs-lisp
+(use-package elfeed-org
+  :straight t
+  :init
+  (elfeed-org))
+#+end_src
 * elpy
 
 https://github.com/jorgenschaefer/elpy
