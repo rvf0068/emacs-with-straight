@@ -595,6 +595,18 @@ Magit is a complete text-based user interface to Git.
   (marginalia-mode))
 #+end_src
 
+* mastodon
+
+https://codeberg.org/martianh/mastodon.el
+
+#+begin_src emacs-lisp
+(use-package mastodon
+  :straight t
+  :after discover
+  :config
+  (mastodon-discover))
+#+end_src
+
 * math-delimiters
 
 https://github.com/oantolin/math-delimiters
