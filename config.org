@@ -223,9 +223,7 @@ An Emacs library for searching and downloading BibTeX entries from the web.
 					(equal title ""))
                               bibtex-autokey-year-title-separator)
                             title)))
-      (if bibtex-autokey-before-presentation-function
-          (funcall bibtex-autokey-before-presentation-function autokey)
-	autokey))))
+      autokey)))
 #+end_src
 
 * cdlatex                                                              :math:
