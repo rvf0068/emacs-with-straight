@@ -830,6 +830,21 @@ https://github.com/awth13/org-appear
   (add-hook 'org-mode-hook 'org-fragtog-mode))
 #+end_src
 
+** org-modern
+
+https://github.com/minad/org-modern
+
+#+begin_quote
+This package implements a “modern” style for your Org buffers using font locking and text properties. The package styles headlines, keywords, tables and source blocks.
+#+end_quote
+
+#+begin_src emacs-lisp
+(use-package org-modern
+  :straight t
+  :init
+  (global-org-modern-mode))
+#+end_src
+
 ** org-noter
 
 https://github.com/weirdNox/org-noter
