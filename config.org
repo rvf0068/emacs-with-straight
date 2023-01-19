@@ -863,7 +863,9 @@ https://github.com/marcinkoziej/org-pomodoro
 
 #+begin_src emacs-lisp
 (use-package org-pomodoro
-  :straight t)
+  :straight t
+  :custom
+  (org-pomodoro-long-break-length 15))
 #+end_src
 
 ** org-ref
