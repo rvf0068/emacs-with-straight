@@ -652,11 +652,21 @@ https://gitlab.com/protesilaos/modus-themes
         modus-themes-bold-constructs nil
         modus-themes-region '(bg-only no-extend))
 
-  ;; Load the theme files before enabling a theme
   (load-theme 'modus-operandi)
-  :config
-  ;; Load the theme of your choice:
   :bind ("<f6> m" . modus-themes-toggle))
+#+end_src
+
+* numpydoc
+
+https://github.com/douglasdavis/numpydoc.el
+
+Adds documentation with =M-x numpydoc-generate=
+
+#+begin_src emacs-lisp
+(use-package numpydoc
+  :straight t
+  :custom
+  (numpydoc-insert-return-without-typehint t))
 #+end_src
 
 * orderless
