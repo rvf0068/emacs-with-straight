@@ -734,9 +734,9 @@ Org mode is for keeping notes, maintaining to-do lists, planning projects, autho
   (defun my-org-mode-hook ()
     ;; https://emacs.stackexchange.com/a/63581/29
     ;; do not expand abbrevs in org-mode block sources
-    (setq abbrev-expand-function (lambda ()
-				   (unless (org-in-src-block-p)
-				     (abbrev--default-expand))))
+    ;; (setq abbrev-expand-function (lambda ()
+    ;; 				   (unless (org-in-src-block-p)
+    ;; 				     (abbrev--default-expand))))
     (turn-on-auto-revert-mode)
     (turn-on-org-cdlatex))
   :custom
